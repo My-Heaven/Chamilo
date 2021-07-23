@@ -6,23 +6,27 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
-<link href="${pageContext.request.contextPath}/css/fontawesome-free-5.15.3-web/css/fontawesome.css"
+<link
+	href="${pageContext.request.contextPath}/css/fontawesome-free-5.15.3-web/css/fontawesome.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/fontawesome-free-5.15.3-web/css/brands.css"
+<link
+	href="${pageContext.request.contextPath}/css/fontawesome-free-5.15.3-web/css/brands.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/fontawesome-free-5.15.3-web/css/solid.css"
+<link
+	href="${pageContext.request.contextPath}/css/fontawesome-free-5.15.3-web/css/solid.css"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home-page.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/home-page.css">
 </head>
 
 <body>
 	<header id="cm-header">
 		<a href="${pageContext.request.contextPath}/" target="_self"> <img
-			src="${pageContext.request.contextPath}/img/header-logo.png" border="0" id="header-logo" /></a>
+			src="${pageContext.request.contextPath}/img/header-logo.png"
+			border="0" id="header-logo" /></a>
 	</header>
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/">Home Page</a></li>
-		<li><a href="${pageContext.request.contextPath}/">Cai gi do</a></li>
 	</ul>
 	<div id="container">
 		<div id="form-login">
@@ -46,7 +50,8 @@
 				<p>Administrator : Chamilo LMS</p>
 				<p>Powered by Chamilo LMS © 2021</p>
 				<p>
-					Sponsor <img src="${pageContext.request.contextPath}/img/beeznet-logo-proveedor.png" />
+					Sponsor <img
+						src="${pageContext.request.contextPath}/img/beeznet-logo-proveedor.png" />
 				</p>
 			</div>
 		</div>
