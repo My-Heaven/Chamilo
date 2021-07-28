@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+}
+.container {
+  height: 100vh;
+  position: relative;
+}
+.cover {
+  height: 90%;
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.selector {
+  background: rgb(228, 223, 223);
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+.selector li {
+  display: inline-block;
+}
+.selector li a {
+  text-decoration: none;
+  color: #4d7fa5;
+}
+.descrip {
+  padding: 15px;
+  background: #d9edf7;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin: 20px 0px;
+}
+h2 {
+  font-weight: 600;
+}
+span {
+  color: red;
+}
+.form-group {
+  display: flex;
+  padding: 14px;
+}
+.form-label {
+  width: 14%;
+  padding: 7px 15px 0px;
+  text-align: right;
+  font-weight: bold;
+}
+.text-form {
+  flex: 1;
+}
+.input-form {
+  width: 80%;
+  padding: 6px 12px;
+  height: 36px;
+  border-style: solid blue;
+}
+.input-description {
+  margin: 5px;
+}
+.create-course {
+  margin-left: 180px;
+  padding: 6px 12px;
+  background: #337ab7;
+  color: white;
+  border-radius: 4px;
+  font-size: 15px;
+  margin-right: 2px;
+}
+.button-form i {
+  padding: 2px;
+}
+.error
+{
+ 	color:red;
+ 	font-size: 30px;
+}
+

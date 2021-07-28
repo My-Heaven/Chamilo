@@ -1,0 +1,45 @@
+#avatar-form{
+	border: 2px solid #f3f6f6;
+	border-radius: 4px;
+	margin-top: 15px;
+	padding-top: 15px;
+	padding: 15px;
+	width: 240px;
+	height: 100px;
+	text-align: center;
+}
+#container-page{
+	display: inline-flex;
+	padding-left: 15%;
+	padding-right: 15%;
+}
+#avatar{
+	border: 1px #d4d4d4 solid;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    margin-bottom: 5px;
+    width: 100px;
+    height: 100px;
+}
+#body-form{
+	width: 1000px;
+	margin-left: 50px;
+}
+#form-user{
+	padding-bottom: 10px;
+}
+#tb-user th, td{
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+	width: 150px;
+}
+#tb-user tr:hover {
+	background-color: #f5f5f5;
+}
+#row{
+	padding-top: 15px;
+}
+a{
+	text-decoration: none;
+}
