@@ -53,27 +53,63 @@ public class courseController {
     }
 
     @GetMapping("/list")
-    public String courseList(@RequestParam(value = "search", defaultValue = "") String searchValue,Model model) {
-        List<Course> list  = courseServices.searchCoursesByCode(searchValue);
+    public String courseList(@RequestParam(value = "search", defaultValue = "") String searchValue, Model model, @ModelAttribute("message") String message) {
+        List<Course> list = courseServices.searchCoursesByCode(searchValue);
+        if (list.size() == 0) {
+            list = courseServices.searchCoursesByCode("");
+            model.addAttribute("NOTI", "No course is found");
+        }
+        model.addAttribute("message",message);
         List<CourseCategory> courseCategories = courseServices.getCategories();
         model.addAttribute("listCourse", list);
         model.addAttribute("category", courseCategories);
         return "CourseList";
     }
+
     @GetMapping("/view")
-    public String courseDetails(@RequestParam("id") Integer courseId,Model model){
+    public String courseDetails(@RequestParam("id") Integer courseId,
+                                Model model, @ModelAttribute("message") final String message) {
         Course course = courseServices.getCourseById(courseId);
+        model.addAttribute("NOTI",message);
         model.addAttribute("course", course);
         return "CourseDetails";
     }
 
+    @PostMapping("/update")
+    public String updateCourse(@Valid @ModelAttribute("course") Course theCourse,
+                               final BindingResult theBindingResult, RedirectAttributes redirectAttributes) {
+        System.out.println(theCourse.getId());
+        if (theBindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.course",
+                    theBindingResult);
+            redirectAttributes.addFlashAttribute("course", theCourse);
+            redirectAttributes.addAttribute("message","Update Course Error");
+            return "redirect:/course/edit" + "?id=" + theCourse.getId();
+        } else {
+            courseServices.updateCourse(theCourse);
+            redirectAttributes.addFlashAttribute("message", "Update Course Successful!");
+            return "redirect:/course/view" +  "?id=" + theCourse.getId();
+
+        }
+    }
+
     @GetMapping("/edit")
-    public String editCourse(@RequestParam("id") Integer courseId, Model model){
+    public String editCourse(@RequestParam("id") Integer courseId, Model model, @ModelAttribute("message") String message) {
         Course course = courseServices.getCourseById(courseId);
+        List<CourseCategory> listCategories = courseServices.getCategories();
+        model.addAttribute("categoryList", listCategories);
+        model.addAttribute("NOTI",message);
+        if (!model.containsAttribute("course")) {
+            model.addAttribute("course", course);
+        }
+
         return "EditCourse";
     }
+
     @GetMapping("/delete")
-    public String deleteCourse(@RequestParam("id") Integer courseId,Model model){
+    public String deleteCourse(@RequestParam("id") Integer courseId, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("message", "Delete Course Successfully");
+        courseServices.deleteCourse(courseId);
         return "redirect://course/list";
     }
 }

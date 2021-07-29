@@ -7,13 +7,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
-      style="" lang="vi"><!--<![endif]-->
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh mục khoá học</title>
+    <script src="<c:url value="/js/jquery-3.2.1.slim.min.js"></c:url>"></script>
     <%--    FontAnswesome--%>
     <link rel="stylesheet" href="<c:url value="/css/fontawesome-free-5.15.3-web/css/all.min.css"></c:url>">
     <%--CSS--%>
@@ -24,6 +24,7 @@
           type="text/css">
     <%--JS--%>
     <script src="<c:url value="/css/theme/bootstrap/dist/js/bootstrap.min.js"></c:url>"></script>
+
 </head>
 <body class="page_origin_">
 <!-- START MAIN -->
@@ -70,7 +71,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="http://localhost/chamilo/"> <em class="fa fa-home"></em> </a>
+                    <a class="navbar-brand" href=""> <em class="fa fa-home"></em> </a>
                 </div>
 
                 <div id="navbar" class="collapse navbar-collapse">
@@ -83,7 +84,7 @@
                         </li>
 
                         <li class="my-course active">
-                            <a href="http://localhost/chamilo/user_portal.php?nosession=true" title="Danh mục khoá học">
+                            <a href="${pageContext.request.contextPath}/course/list" title="Danh mục khoá học">
                                 Danh mục khoá học
                             </a>
                         </li>
@@ -182,8 +183,13 @@
 
                         <section id="page" class="">
                             <div class="classic-courses">
-                                <c:if test="${listCourse.size() == 0}">
-                                    <h2 class="text-center">No course is found</h2>
+                                <c:if test="${NOTI != null}">
+                                   <script>
+                                       alert("${NOTI}");
+                                   </script>
+                                </c:if>
+                                <c:if test="${message != null}">
+                                    <h3 class="text-danger">${message}</h3>
                                 </c:if>
                                 <c:if test="${listCourse.size() != 0}">
                                     <c:forEach var="course" items="${listCourse}">
@@ -205,19 +211,9 @@
                                                                     ${course.title}
                                                             </a>
                                                         </h4>
-                                                            <%--                                                <div class="course-items-session">--%>
-                                                            <%--                                                    <div class="list-teachers" style="max-height: none;">--%>
-                                                            <%--                                                        <img src="http://localhost/chamilo/main/img/icons/16/teacher.png"--%>
-                                                            <%--                                                             alt="Giáo viên" title="Giáo viên">--%>
-                                                            <%--                                                        <a href="http://localhost/chamilo/main/inc/ajax/user_manager.ajax.php?a=get_user_popup&amp;course_id=1&amp;user_id=1"--%>
-                                                            <%--                                                           class="ajax" data-title="John Doe">--%>
-                                                            <%--                                                            /--%>
-                                                            <%--                                                        </a>--%>
-                                                            <%--                                                    </div>--%>
-                                                            <%--                                                </div>--%>
                                                         <div class="category">
                                                             <c:forEach var="category" items="${category}">
-                                                                <c:if test="${category.id == course.id}">
+                                                                <c:if test="${category.id == course.category_id}">
                                                                     ${category.name}
                                                                 </c:if>
                                                             </c:forEach>
@@ -242,10 +238,11 @@
 
 
                         <div style="text-align:center;" id="user_image_block" class="panel panel-default">
-                            <div class="panel-body"><a style="text-align:center"
-                                                       href="http://localhost/chamilo/main/social/home.php">
-                                <img class="img-circle"
-                                     src="http://localhost/chamilo/main/img/icons/128/unknown.png"></a></div>
+                            <div class="panel-body">
+                                <a style="text-align:center"
+                                   href="">
+                                    <img class="img-circle"
+                                         src="http://localhost/chamilo/main/img/icons/128/unknown.png"></a></div>
                         </div>
 
                         <!-- BLOCK PROFILE -->
@@ -334,8 +331,29 @@
 
     </footer>
     <!-- END FOOTER -->
+    <!-- Modal -->
+    <div id="Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </main>
 <!-- END MAIN -->
+<script src="<c:url value="/js/jquery-3.2.1.slim.min.js"></c:url>"></script>
 </body>
 </html>

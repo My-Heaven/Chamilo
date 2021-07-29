@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import com.wfh.validator.CourseCode;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name="Course")
@@ -42,8 +43,23 @@ public class Course {
 	@Column(name="u_id")
 	private int u_id;
 
+	@Column(name = "status")
+	private Boolean status = true;
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getCode() {
