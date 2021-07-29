@@ -60,7 +60,7 @@ public class manageCourseDAO implements courseDAO {
         List<Course> list = null;
        try (Session session = sessionFactory.openSession();){
             transaction= session.beginTransaction();
-            Query<Course> query = session.createQuery("SELECT c FROM Course c WHERE c.code LIKE :code OR c.title LIKE :title",Course.class);
+            Query<Course> query = session.createQuery("SELECT c FROM Course c WHERE c.status = true AND (c.code LIKE :code OR c.title LIKE :title)",Course.class);
             query.setParameter("code", "%" + searchValue + "%");
             query.setParameter("title", "%" + searchValue + "%");
                 list = query.getResultList();
@@ -77,7 +77,11 @@ public class manageCourseDAO implements courseDAO {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(course);
+            Course courseDB = session.get(Course.class, course.getId());
+            courseDB.setCode(course.getCode());
+            courseDB.setTitle(course.getTitle());
+            courseDB.setCategory_id(course.getCategory_id());
+            session.saveOrUpdate(courseDB);
             transaction.commit();
 
         }catch (Exception e){
@@ -98,7 +102,8 @@ public class manageCourseDAO implements courseDAO {
             transaction = currentSession.beginTransaction();
             Course course = currentSession.get(Course.class, courseId);
             if (course != null) {
-                currentSession.delete(course);
+                course.setStatus(false);
+                currentSession.update(course);
                 result = true;
             }
             transaction.commit();
