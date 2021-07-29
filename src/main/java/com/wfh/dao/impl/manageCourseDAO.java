@@ -55,12 +55,14 @@ public class manageCourseDAO implements courseDAO {
     }
 
     @Override
-    public List<Course> searchCourseByCode(String code) {
+    public List<Course> searchCourseByCode(String searchValue) {
         Transaction transaction=null;
         List<Course> list = null;
        try (Session session = sessionFactory.openSession();){
             transaction= session.beginTransaction();
-            Query<Course> query = session.createQuery("FROM Course",Course.class);
+            Query<Course> query = session.createQuery("SELECT c FROM Course c WHERE c.code LIKE :code OR c.title LIKE :title",Course.class);
+            query.setParameter("code", "%" + searchValue + "%");
+            query.setParameter("title", "%" + searchValue + "%");
                 list = query.getResultList();
             transaction.commit();
 
