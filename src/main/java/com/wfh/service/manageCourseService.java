@@ -14,7 +14,7 @@ public class manageCourseService implements courseServices {
 	@Autowired
 	private courseDAO courseDAO ;
 
-	
+
 
 	@Override
 	@Transactional
@@ -23,12 +23,33 @@ public class manageCourseService implements courseServices {
 		List<CourseCategory> list = courseDAO.getListCategories();
 		return list;
 	}
-	
+
 	@Override
 	@Transactional
 	public void createCourse(Course newCourse) {
 		courseDAO.createNewCourse(newCourse);;
 			
 	}
+
+	@Override
+	public Course getCourseById(int courseId) {
+		return courseDAO.getCourseById(courseId);
+	}
+
+	@Override
+	public List<Course> searchCoursesByCode(String code) {
+		return courseDAO.searchCourseByCode(code);
+	}
+
+	@Override
+	public boolean updateCourse(Course course) {
+		return courseDAO.updateCourse(course);
+	}
+
+	@Override
+	public boolean deleteCourse(int courseId) {
+		return courseDAO.deleteCourse(courseId);
+	}
+
 
 }
