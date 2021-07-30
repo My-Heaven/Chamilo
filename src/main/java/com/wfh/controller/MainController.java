@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wfh.dao.C_quizDAO;
 import com.wfh.dao.UserDAO;
 import com.wfh.dao.UserInfoDAO;
 import com.wfh.model.User;
@@ -135,5 +136,6 @@ public class MainController {
 		request.setAttribute("LISTUSER", listUser);
 		return "FindPage";
 	}
+	
 
 }
