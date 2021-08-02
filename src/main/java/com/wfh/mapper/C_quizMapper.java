@@ -17,10 +17,10 @@ public class C_quizMapper implements RowMapper<C_quiz> {
 		int c_id = rs.getInt("c_id");
 		String title = rs.getString("title");
 		boolean type = rs.getBoolean("type");
-		boolean stuff_answer = rs.getBoolean("stuff_answer");
+		boolean stuff_answer = rs.getBoolean("stuff_answers");
 		int random = rs.getInt("random");
-		Date start_time = rs.getDate("start_time");
-		Date end_time = rs.getDate("end_time");
+		String start_time = rs.getString("start_time");
+		String end_time = rs.getString("end_time");
 		String description = rs.getString("description");
 		boolean active = rs.getBoolean("active");
 		int max_attempt = rs.getInt("max_attempt");

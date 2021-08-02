@@ -9,8 +9,8 @@ public class C_quiz {
 	private boolean type;
 	private boolean stuff_answer;
 	private int random;
-	private Date start_time;
-	private Date end_time;
+	private String start_time;
+	private String end_time;
 	private String description;
 	private boolean active;
 	private int max_attempt;
@@ -19,8 +19,8 @@ public class C_quiz {
 	public C_quiz() {
 	}
 
-	public C_quiz(int id, int c_id, String title, boolean type, boolean stuff_answer, int random, Date start_time,
-			Date end_time, String description, boolean active, int max_attempt, int expired_time) {
+	public C_quiz(int id, int c_id, String title, boolean type, boolean stuff_answer, int random, String start_time,
+			String end_time, String description, boolean active, int max_attempt, int expired_time) {
 		super();
 		this.id = id;
 		this.c_id = c_id;
@@ -84,19 +84,19 @@ public class C_quiz {
 		this.random = random;
 	}
 
-	public Date getStart_time() {
+	public String getStart_time() {
 		return start_time;
 	}
 
-	public void setStart_time(Date start_time) {
+	public void setStart_time(String start_time) {
 		this.start_time = start_time;
 	}
 
-	public Date getEnd_time() {
+	public String getEnd_time() {
 		return end_time;
 	}
 
-	public void setEnd_time(Date end_time) {
+	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
 

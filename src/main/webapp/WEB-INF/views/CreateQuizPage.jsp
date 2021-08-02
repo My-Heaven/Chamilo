@@ -39,6 +39,12 @@
 		<br>
 		<label>Max
 			number of attempts</label> <input type="number" name="max_attempt"> <br>
+			<label>Start time</label> 
+		<input type="Date" name="start_time"> 
+		<br> 
+		<label>End Time</label> 
+		<input type="Date" name="end_time"> 
+		<br> 
 		<label>Total duration in minutes of the test</label> 
 		<input type="number" name="expired_time"> 
 		<br> 

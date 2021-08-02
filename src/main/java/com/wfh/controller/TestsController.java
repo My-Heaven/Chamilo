@@ -1,12 +1,19 @@
 package com.wfh.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wfh.dao.C_quizDAO;
+import com.wfh.model.C_quiz;
+import com.wfh.model.UserInfo;
 
 @Controller
 public class TestsController {
@@ -14,7 +21,9 @@ public class TestsController {
 	C_quizDAO C_quizDAO;
 
 	@RequestMapping("/tests")
-	public String showTestsPage() {
+	public String showTestsPage(Model model) {
+		List<C_quiz> list = C_quizDAO.getListC_Quiz();
+		model.addAttribute("LISTQUIZ", list);
 		return "TestPage";
 	}
 
@@ -22,7 +31,15 @@ public class TestsController {
 	public String createQuizPage() {
 		return "CreateQuizPage";
 	}
-
+	
+	@RequestMapping("/search-cquiz-by-id")
+	public String SearchCquizById(HttpServletRequest request){
+		String searchValue = request.getParameter("searchValue");
+		List<C_quiz> list = C_quizDAO.findListC_QuizByID(searchValue);
+		request.setAttribute("LISTQUIZ", list);
+		return "TestPage";
+	}
+	
 	@RequestMapping("/saveQuiz")
 	public String saveQuiz(HttpServletRequest request) {
 		String title = request.getParameter("title");
@@ -49,9 +66,12 @@ public class TestsController {
 		}
 		int max_attempt = Integer.parseInt(request.getParameter("max_attempt"));
 		int expired_time = Integer.parseInt(request.getParameter("expired_time"));
+		String start_time = request.getParameter("start_time");
+		String end_time = request.getParameter("end_time");
 		if (title != null) {
-			C_quizDAO.createQuiz(3, title, type, stuff_answes, random, max_attempt, expired_time);
+			C_quizDAO.createQuiz(3, title, type, stuff_answes, random,start_time,end_time, max_attempt, expired_time);
 		}
 		return "redirect:/tests";
 	}
+	
 }
