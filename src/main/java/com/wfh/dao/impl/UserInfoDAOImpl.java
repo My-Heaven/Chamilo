@@ -36,9 +36,9 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	@SuppressWarnings("deprecation")
 	@Override
 	public UserInfo findUserById(int id) {
-		String sql = "select * from [dbo].[user] where [id] like ?";
+		String sql = "select * from [dbo].[user] where [id] = ?";
 
-		Object[] params = new Object[] { "%" + id + "%" };
+		Object[] params = new Object[] {id};
 
 		UserInfoMapper mapper = new UserInfoMapper();
 

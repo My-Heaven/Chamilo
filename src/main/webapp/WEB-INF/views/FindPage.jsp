@@ -63,7 +63,7 @@
 					</tr>
 					<c:forEach var="user" items="${requestScope.LISTUSER}">
 						<c:url var="updateLink" value="UpdatePage">
-							<c:param name="usernames" value="${param.searchValue}" />
+							<c:param name="usernames" value="${param.username}" />
 							<c:param name="passwords" value="${param.password}" />
 							<c:param name="lastnames" value="${param.lastname}" />
 							<c:param name="firstnames" value="${param.firstname}" />
